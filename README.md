@@ -19,7 +19,9 @@ Or install it yourself as:
 
 ## Usage
 
-All you need is a Admin::BaseController (which the EasyAdmin controllers will extend). Define any authentication, layout and before_filter logic in here.
+The gem contains a dummy rails apps (under test/dummy) which you can use to test or extend the functionality (contains no styles!).
+
+To use it in your Rails app, all you need is a Admin::BaseController (which the EasyAdmin controllers will extend). Define any authentication, layout and before_filter logic in there.
 
 ### JobsController
 To manage Delayed::Jobs, you need to define a method in your Admin::BaseController called authorize_jobs which will control access to the JobsController.
@@ -30,7 +32,7 @@ To manage Delayed::Jobs, you need to define a method in your Admin::BaseControll
       private
       
       def authorize_jobs
-        @current_user.admin?
+        redirect_to root_path unless @current_user.admin?
       end
     end
 
