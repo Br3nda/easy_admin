@@ -1,6 +1,7 @@
 # EasyAdmin
 
-TODO: Write a gem description
+A Rails engine containing common admin maintenance screens.
+Currently contains Delayed::Job maintenance screens.
 
 ## Installation
 
@@ -18,7 +19,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+All you need is a Admin::BaseController (which the EasyAdmin controllers will extend). Define any authentication, layout and before_filter logic in here.
+
+### JobsController
+To manage Delayed::Jobs, you need to define a method in your Admin::BaseController called authorize_jobs which will control access to the JobsController.
+
+    class Admin::BaseController < ApplicationController
+      layout 'admin'      
+
+      private
+      
+      def authorize_jobs
+        @current_user.admin?
+      end
+    end
+
+You will get the following routes:
+
+    retry_admin_job POST   /admin/jobs/:id/retry(.:format)          admin/jobs#retry
+         admin_jobs GET    /admin/jobs(.:format)                    admin/jobs#index
+          admin_job GET    /admin/jobs/:id(.:format)                admin/jobs#show
+                    DELETE /admin/jobs/:id(.:format)                admin/jobs#destroy
 
 ## Contributing
 
