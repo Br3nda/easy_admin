@@ -57,34 +57,28 @@ To manage OutboundRequests you need to define a method in your Admin::BaseContro
       end
     end
 
-You will need to run this for generating the outbound_request create table migration:
+You need to run this for generating the outbound_request create table migration:
+
     $ rails g easy_admin:active_record
 
-The outbound_requests model will have the following attributes:
-    :service
-    :action
-    :identifier
-    :params
-    :response_code
-    :response_body
-    :error
-    :created_at
-    :updated_at
-
 You also need to define the outbound services as a hash constant. Put this in an EasyAdmin module in application.rb.
+
     module ::EasyAdmin
       OUTBOUND_SERVICES = {webhook: 'Webhook', sailthru: 'Sailthru'}
     end
 
 You will get the following routes:
+
     admin_outbound_requests GET    /admin/outbound_requests(.:format)     admin/outbound_requests#index
     admin_outbound_request GET    /admin/outbound_requests/:id(.:format) admin/outbound_requests#show
 
-You will also get a rake task:
-    rake requests:clean[age]  # Delete old outbound requests (DEFAULT= 2.months).
+You will also get a rake task to delete old outbound requests. `age` is counted in days. Default age = 2:
+
+    rake requests:clean[age]
 
 #### Methods
-If you want to get the request elapse time, you can call (`elapsed_time`):
+If you want to get the request elapse time, you can call `elapsed_time`:
+
     outbound_request = OutboundRequest.create(service: :twitter, identifier: 'abletech', action: :dm)
       # do request here
     outbound_request.update_attribute(:response_code, response.code)
