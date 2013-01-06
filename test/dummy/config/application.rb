@@ -55,5 +55,9 @@ module Dummy
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
+
+  module ::EasyAdmin
+    OUTBOUND_SERVICES = {tracking: 'Tracking API', sailthru: 'Sailthru API', twitter: 'Twitter API', webhook: 'Webhook', sms: 'SMS Global API'}
+  end
 end
 

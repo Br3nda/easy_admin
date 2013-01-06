@@ -7,4 +7,8 @@ class Admin::BaseController < ApplicationController
     #    redirect_to root_path unless @current_user
   end
 
+  def authorize_outbound_requests
+    true
+  end
+
 end
