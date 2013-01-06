@@ -5,5 +5,6 @@ Rails.application.routes.draw do
         post :retry
       end
     end
+    resources :outbound_requests, only: [:index, :show]
   end
 end

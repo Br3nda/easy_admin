@@ -1,0 +1,6 @@
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info rows, :model => model.pluralize(rows.count) %>
+  </div>
+  <%= will_paginate rows, :container => false %>
+</div>

@@ -1,0 +1,58 @@
+<div class="clear options">
+  <%= link_to "&laquo; Back".html_safe, admin_outbound_requests_path %>
+</div>
+
+<h2><%= EasyAdmin::OUTBOUND_SERVICES[@outbound_request.service.to_sym] %> Request <%= @outbound_request.id %></h2>
+
+<table class="details">
+  <tr>
+    <th>Action</th>
+    <td><%= @outbound_request.action %></td>
+  </tr>
+  <tr>
+    <th>Identifier</th>
+    <td><%= @outbound_request.identifier %></td>
+  </tr>
+  <tr>
+    <th>Created At</th>
+    <td><%= @outbound_request.created_at.to_s(:display) %></td>
+  </tr>
+  <tr>
+    <th>Updated At</th>
+    <td><%= @outbound_request.updated_at.to_s(:display) %></td>
+  </tr>
+</table>
+
+<h3>Request</h3>
+<table class="details">
+  <tr>
+    <th>Request Params</th>
+    <td><%= @outbound_request.params.to_s.gsub(",", "<br>").html_safe %></td>
+  </tr>
+  <tr>
+    <th>Elapsed Time</th>
+    <td><%= @outbound_request.elapsed_time.round(2) %> seconds</td>
+  </tr>
+</table>
+
+<h3>Response</h3>
+<table class="details">
+  <tr>
+    <th>Response Code</th>
+    <td><%= @outbound_request.response_code %></td>
+  </tr>
+  <tr>
+    <th>Response Body</th>
+    <td><%= @outbound_request.response_body %></td>
+  </tr>
+  <% unless @outbound_request.error.blank? %>
+    <tr>
+      <th>Error</th>
+      <td><%= @outbound_request.error %></td>
+    </tr>
+    <% end %>
+</table>
+
+<div class="clear options">
+  <%= link_to "&laquo; Back".html_safe, admin_outbound_requests_path %>
+</div>

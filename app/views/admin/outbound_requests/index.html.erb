@@ -1,0 +1,51 @@
+<h2>Outbound Requests</h2>
+
+<%= form_tag admin_outbound_requests_path, :method => :get  do %>
+  <dl class="field">
+    <dt><%= label_tag :service %></dt>
+    <dd><%= select_tag :service, options_for_select(@services, params[:service]), include_blank: true %></dd>
+  </dl>
+  <dl class="field">
+    <dt><%= label_tag :identifier %></dt>
+    <dd>
+      <%= text_field_tag :identifier, params[:identifier] %>
+      <span class="help">Performs a partial search</span></dd>
+  </dl>
+  <dl class="field">
+    <dt><%= label_tag :request_action, 'Action' %></dt>
+    <dd><%= text_field_tag :request_action, params[:request_action] %></dd>
+  </dl>
+  <div class="buttons">
+    <%= submit_tag "Filter", :class => 'form-submit' %>
+  </div>
+<% end %>
+<br/>
+<%= render 'pagination', rows: @outbound_requests, model: "#{params[:service] || 'Outbound'} request" unless @outbound_requests.empty? %>
+<br>
+<div class="standard">
+  <table class="sortable">
+    <% if @outbound_requests.empty? %>
+      <tr>
+        <td colspan='5'>No requests found</td>
+      </tr>
+    <% else %>
+      <tr>
+        <th class="sorted">Service</th>
+        <th class="sorted">Action</th>
+        <th class="sorted">Identifier</th>
+        <th class="sorted">Response Code</th>
+        <th class="sorted">Created At</th>
+      </tr>
+      <% @outbound_requests.each do |request| %>
+        <tr>
+          <td><%= EasyAdmin::OUTBOUND_SERVICES[request.service.to_sym] %>
+          <td><%= link_to request.action, admin_outbound_request_path(request) %></td>
+          <td><%= request.identifier %></td>
+          <td><%= request.response_code %></td>
+          <td><%= request.created_at.to_s %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+<%= render 'pagination', rows: @outbound_requests, model: "#{params[:service] || 'Outbound'} request" unless @outbound_requests.empty? %>
