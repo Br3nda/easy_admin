@@ -27,7 +27,7 @@
 <table class="details">
   <tr>
     <th>Request Params</th>
-    <td><%= @outbound_request.params.to_s.gsub(",", "<br>").html_safe %></td>
+    <td><%= clean_params(@outbound_request.params) %></td>
   </tr>
   <tr>
     <th>Elapsed Time</th>

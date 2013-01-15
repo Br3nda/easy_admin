@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    easy_admin (0.0.2)
+    easy_admin (0.1.0)
       rails (~> 3.2.0)
       will_paginate
 
