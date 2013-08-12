@@ -45,4 +45,19 @@ class OutboundRequest < ActiveRecord::Base
   def elapsed_time
     updated_at - created_at
   end
+
+  def self.rpm(params={})
+    period = params[:period] || 60 # period in seconds
+    mins_per_period = period / 60.0
+
+    query = where('created_at > ?', Time.current - period.seconds)
+
+    [:service, :action, :response_code].each do |filter|
+      if params[filter]
+        query = query.where(filter => params[filter])
+      end
+    end
+
+    query.count / mins_per_period
+  end
 end
