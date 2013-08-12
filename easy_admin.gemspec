@@ -7,8 +7,8 @@ require "easy_admin/version"
 Gem::Specification.new do |s|
   s.name        = "easy_admin"
   s.version     = EasyAdmin::VERSION
-  s.authors       = ["Shevaun Coker"]
-  s.email         = ["shevaun.coker@abletech.co.nz"]
+  s.authors       = ["Shevaun Coker", "Nigel Ramsay"]
+  s.email         = ["contact@abletech.co.nz"]
   s.description   = %q{Common Admin maintenance screens}
   s.summary       = %q{View, delete and retry queued Delayed Jobs from an admin interface}
 
