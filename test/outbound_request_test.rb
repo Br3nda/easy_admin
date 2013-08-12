@@ -38,4 +38,18 @@ class OutboundRequestTest < ActiveSupport::TestCase
   test '#rpm should select only SRV2 requests, over a 10 minute period' do
     assert_equal 0.2, OutboundRequest.rpm(service: 'SRV2', period: 10.minutes)
   end
+
+  test '#response_summary should give 4 results for the default 1 minute period' do
+    summary = OutboundRequest.response_summary
+    assert_not_nil summary
+    assert_equal 3, summary['200'], "expected 3 responses with code of 200"
+    assert_equal 1, summary['404'], "expected 1 response with a code of 404"
+  end
+
+  test '#response_summary should give 4 results for a 5 minute period' do
+    summary = OutboundRequest.response_summary(period: 5.minutes)
+    assert_not_nil summary
+    assert_equal 3, summary['200'], "expected 3 responses with code of 200"
+    assert_equal 2, summary['404'], "expected 2 responses with a code of 404"
+  end
 end
