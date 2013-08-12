@@ -64,6 +64,14 @@ class OutboundRequest < ActiveRecord::Base
   def self.response_summary(params={})
     period = params[:period] || 60
 
-    where('created_at > ?', Time.current - period.seconds).group('response_code').count
+    query = where('created_at > ?', Time.current - period.seconds)
+
+    [:service, :action].each do |filter|
+      if params[filter]
+        query = query.where(filter => params[filter])
+      end
+    end
+
+    query.group('response_code').count
   end
 end

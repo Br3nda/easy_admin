@@ -52,4 +52,11 @@ class OutboundRequestTest < ActiveSupport::TestCase
     assert_equal 3, summary['200'], "expected 3 responses with code of 200"
     assert_equal 2, summary['404'], "expected 2 responses with a code of 404"
   end
+
+  test '#response_summary should give 3 results for a 5 minute period, with SRV1' do
+    summary = OutboundRequest.response_summary(period: 5.minutes, service: 'SRV1')
+    assert_not_nil summary
+    assert_equal 3, summary['200'], "expected 3 responses with code of 200"
+    assert_nil summary['404'], "expected no responses with a code of 404"
+  end
 end
