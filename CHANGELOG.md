@@ -1,5 +1,11 @@
 # Changelog for easy-admin
 
+## 0.3.1 (2013-08-12)
+
+Bugfixes
+
+* Add filtering ability to OutboundRequest#response_summary
+
 ## 0.3.0 (2013-08-12)
 
 New Features
