@@ -17,8 +17,11 @@
 class OutboundRequest < ActiveRecord::Base
   serialize :params
   serialize :response_body
+  serialize :error
+  serialize :identifier
 
-  attr_accessible :service, :action, :identifier, :params, :response_code, :response_body, :error
+  #TODO: add these in the controller params
+  # attr_accessible :service, :action, :identifier, :params, :response_code, :response_body, :error
 
   self.per_page = 50
 
