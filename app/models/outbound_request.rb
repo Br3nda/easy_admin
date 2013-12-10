@@ -20,9 +20,6 @@ class OutboundRequest < ActiveRecord::Base
   serialize :error
   serialize :identifier
 
-  #TODO: add these in the controller params
-  # attr_accessible :service, :action, :identifier, :params, :response_code, :response_body, :error
-
   self.per_page = 50
 
   scope :partial_search, lambda { |column, query|
