@@ -25,7 +25,8 @@ module Dummy
     config.encoding = "utf-8"
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
-  module ::EasyAdmin
-    OUTBOUND_SERVICES = {tracking: 'Tracking API', sailthru: 'Sailthru API', twitter: 'Twitter API', webhook: 'Webhook', sms: 'SMS Global API'}
-  end
+end
+
+module ::EasyAdmin
+  OUTBOUND_SERVICES = {tracking: 'Tracking API', sailthru: 'Sailthru API', twitter: 'Twitter API', webhook: 'Webhook', sms: 'SMS Global API'}
 end
