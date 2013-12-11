@@ -17,8 +17,8 @@
 class OutboundRequest < ActiveRecord::Base
   serialize :params
   serialize :response_body
-
-  attr_accessible :service, :action, :identifier, :params, :response_code, :response_body, :error
+  serialize :error
+  serialize :identifier
 
   self.per_page = 50
 
