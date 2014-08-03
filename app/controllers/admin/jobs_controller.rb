@@ -18,8 +18,7 @@ class Admin::JobsController < Admin::BaseController
 
   def retry
     if @job = Delayed::Job.find_by_id(params[:id])
-      @job.update_column(:attempts, 0)
-      @job.update_attributes(run_at: Time.now, failed_at: nil)
+      @job.update_columns(attempts: 0, run_at: Time.now, failed_at: nil)
     end
     redirect_to admin_jobs_path, :notice => "Job will be retried"
   end
