@@ -1,5 +1,9 @@
 # Changelog for easy-admin
 
+## 0.4.1 (2015-01-14)
+
+Allow Rails 4.2
+
 ## 0.4.0 (2013-12-11)
 
 Upgrade for Rails 4.0
